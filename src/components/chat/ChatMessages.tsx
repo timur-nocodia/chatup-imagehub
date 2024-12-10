@@ -24,8 +24,8 @@ export const ChatMessages = () => {
           <div
             className={`max-w-[80%] p-3 rounded-lg ${
               message.role === 'user'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted'
+                ? 'bg-chat-light dark:bg-chat-dark text-foreground'
+                : 'text-foreground'
             }`}
           >
             {message.content}
