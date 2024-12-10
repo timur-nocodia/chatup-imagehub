@@ -26,9 +26,36 @@ interface ChatStore {
   setSelectedModel: (model: string) => void;
 }
 
+// Create a dummy chat with messages
+const dummyChat: Chat = {
+  id: '1',
+  title: 'Welcome Chat',
+  messages: [
+    {
+      id: '1',
+      content: "Hello! How can I help you today?",
+      role: 'assistant',
+      timestamp: Date.now() - 1000,
+    },
+    {
+      id: '2',
+      content: "I'd like to learn about artificial intelligence.",
+      role: 'user',
+      timestamp: Date.now() - 500,
+    },
+    {
+      id: '3',
+      content: "That's a great topic! AI is a fascinating field that encompasses machine learning, neural networks, and natural language processing. What specific aspect would you like to explore?",
+      role: 'assistant',
+      timestamp: Date.now(),
+    },
+  ],
+  createdAt: Date.now() - 2000,
+};
+
 export const useChatStore = create<ChatStore>((set) => ({
-  chats: [],
-  currentChatId: null,
+  chats: [dummyChat],
+  currentChatId: '1',
   selectedModel: 'gpt-4',
   
   createChat: () => {

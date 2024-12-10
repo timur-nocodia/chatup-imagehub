@@ -39,7 +39,6 @@ export const ModelSelect = () => {
     <Select defaultValue="gpt-4" value={selectedModel} onValueChange={setSelectedModel}>
       <SelectTrigger className="w-[180px] border-none focus:ring-0 focus:ring-offset-0">
         <SelectValue />
-        <ChevronDown className="h-4 w-4 opacity-50" />
       </SelectTrigger>
       <SelectContent className="w-[320px]">
         {models.map((model) => (
