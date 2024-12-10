@@ -24,7 +24,7 @@ const Index = () => {
     <div className="flex h-screen bg-background">
       <ChatSidebar />
       <div className="flex-1 flex flex-col">
-        <div className="flex items-center justify-end px-4 py-2">
+        <div className="flex items-center justify-start px-4 py-2">
           <ModelSelect />
         </div>
         <ChatMessages />

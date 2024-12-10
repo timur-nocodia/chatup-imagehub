@@ -36,9 +36,9 @@ export const ModelSelect = () => {
   const { selectedModel, setSelectedModel } = useChatStore();
 
   return (
-    <Select value={selectedModel} onValueChange={setSelectedModel}>
+    <Select defaultValue="gpt-4" value={selectedModel} onValueChange={setSelectedModel}>
       <SelectTrigger className="w-[180px] border-none focus:ring-0 focus:ring-offset-0">
-        <SelectValue placeholder="Select a model" />
+        <SelectValue />
         <ChevronDown className="h-4 w-4 opacity-50" />
       </SelectTrigger>
       <SelectContent className="w-[320px]">
@@ -46,19 +46,23 @@ export const ModelSelect = () => {
           <SelectItem 
             key={model.id} 
             value={model.id}
-            className="flex flex-col items-start py-3"
+            className={`flex flex-col items-start py-3 ${
+              selectedModel === model.id ? 'bg-accent' : ''
+            }`}
           >
             <div className="flex items-center gap-2">
               <span className="font-medium">{model.name}</span>
-              {model.badge && (
+              {model.badge && selectedModel !== model.id && (
                 <span className="px-2 py-0.5 text-xs bg-muted rounded-full">
                   {model.badge}
                 </span>
               )}
             </div>
-            <span className="text-sm text-muted-foreground">
-              {model.description}
-            </span>
+            {selectedModel !== model.id && (
+              <span className="text-sm text-muted-foreground">
+                {model.description}
+              </span>
+            )}
           </SelectItem>
         ))}
         <SelectItem value="more" className="border-t">
