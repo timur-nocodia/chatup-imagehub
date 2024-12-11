@@ -45,6 +45,13 @@ export const ChatInput = ({ onSendMessage, onFileUpload }: ChatInputProps) => {
     // Implement actual recording logic here
   };
 
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+    // Auto-adjust height
+    e.target.style.height = 'auto';
+    e.target.style.height = `${Math.min(e.target.scrollHeight, 200)}px`; // 200px is approximately 10 lines
+  };
+
   return (
     <div className="w-full px-4">
       <input
@@ -58,10 +65,10 @@ export const ChatInput = ({ onSendMessage, onFileUpload }: ChatInputProps) => {
       <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg">
         <Textarea
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={handleTextareaChange}
           onKeyDown={handleKeyDown}
           placeholder="Type a message..."
-          className="min-h-[20px] max-h-[200px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="min-h-[20px] max-h-[200px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0 overflow-hidden"
           rows={1}
         />
         
