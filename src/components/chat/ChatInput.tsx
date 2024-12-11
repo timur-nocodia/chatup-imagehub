@@ -46,53 +46,51 @@ export const ChatInput = ({ onSendMessage, onFileUpload }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t border-border p-4">
-      <div className="max-w-3xl mx-auto relative">
-        <input
-          type="file"
-          ref={fileInputRef}
-          className="hidden"
-          onChange={handleFileSelect}
-          accept=".txt,.pdf,.doc,.docx,.csv,image/*"
+    <div className="max-w-3xl mx-auto relative px-4">
+      <input
+        type="file"
+        ref={fileInputRef}
+        className="hidden"
+        onChange={handleFileSelect}
+        accept=".txt,.pdf,.doc,.docx,.csv,image/*"
+      />
+      
+      <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <Textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type a message..."
+          className="min-h-[20px] max-h-[240px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          rows={1}
         />
         
-        <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg">
-          <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type a message..."
-            className="min-h-[20px] max-h-[240px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-            rows={1}
-          />
-          
-          <div className="absolute bottom-2 right-2 flex gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Paperclip className="w-4 h-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => fileInputRef.current?.click()}>
-                  Upload File
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+        <div className="absolute bottom-2 right-2 flex gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Paperclip className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => fileInputRef.current?.click()}>
+                Upload File
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              onClick={message.trim() ? handleSubmit : toggleRecording}
-            >
-              {message.trim() ? (
-                <ArrowUp className="w-4 h-4" />
-              ) : (
-                <Mic className={`w-4 h-4 ${isRecording ? 'text-red-500' : ''}`} />
-              )}
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={message.trim() ? handleSubmit : toggleRecording}
+          >
+            {message.trim() ? (
+              <ArrowUp className="w-4 h-4" />
+            ) : (
+              <Mic className={`w-4 h-4 ${isRecording ? 'text-red-500' : ''}`} />
+            )}
+          </Button>
         </div>
       </div>
     </div>
