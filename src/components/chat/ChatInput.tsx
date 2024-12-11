@@ -46,7 +46,7 @@ export const ChatInput = ({ onSendMessage, onFileUpload }: ChatInputProps) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto relative px-4">
+    <div className="w-full px-4">
       <input
         type="file"
         ref={fileInputRef}
@@ -61,7 +61,7 @@ export const ChatInput = ({ onSendMessage, onFileUpload }: ChatInputProps) => {
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Type a message..."
-          className="min-h-[20px] max-h-[240px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="min-h-[20px] max-h-[200px] resize-none bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
           rows={1}
         />
         
